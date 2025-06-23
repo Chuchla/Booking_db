@@ -1,0 +1,57 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  db-master:
+    image: mysql:8.0
+    container_name: mysql-master-db
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'db_booking'
+      MYSQL_USER: 'booking_user'         # Używamy dedykowanego użytkownika aplikacji
+      MYSQL_PASSWORD: 'password123'      # Hasło dla użytkownika aplikacji
+      MYSQL_ROOT_PASSWORD: 'rootpassword'  # Hasło dla roota
+    ports:
+      - "3306:3306" # Port Mastera
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+    volumes:
+      - db_master_data:/var/lib/mysql
+      - ./config/master.cnf:/etc/mysql/conf.d/master.cnf
+    networks:
+      - booking_network
+
+  db-replica:
+    image: mysql:8.0
+    container_name: mysql-replica-db
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    depends_on:
+      - db-master
+    environment:
+      # Replika nie potrzebuje tworzyć bazy ani usera, skopiuje je z mastera
+      MYSQL_ROOT_PASSWORD: 'rootpassword' # To samo hasło roota co u Mastera
+    ports:
+      - "3307:3306" # Mapujemy na INNY port (3307), by mieć dostęp z zewnątrz
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+    volumes:
+      - db_replica_data:/var/lib/mysql
+      - ./config/replica.cnf:/etc/mysql/conf.d/replica.cnf
+    networks:
+      - booking_network
+
+volumes:
+  db_master_data:
+  db_replica_data:
+
+networks:
+  booking_network:
+    driver: bridge

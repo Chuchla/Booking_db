@@ -1,0 +1,12 @@
+{
+  "name": "TestName",
+  "description": "TestDesc",
+  "price": 100.00,
+  "max_guests": 4,
+  "country": "PL",
+  "region": "Mazowieckie",
+  "street": "Warszawska",
+  "city": "Warsaw",
+  "house_number": "12A",
+  "apartment_number": ""
+}

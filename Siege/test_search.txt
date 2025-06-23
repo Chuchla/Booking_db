@@ -1,0 +1,4 @@
+http://127.0.0.1:8000/api/property/search/?city=Warszawa&region=Małopolskie&maxP=330
+http://127.0.0.1:8000/api/property/search/?city=Mielno&region=Pomorskie&maxP=453&minP=400
+http://127.0.0.1:8000/api/property/search/?city=Wrocław&region=Dolnoślaskie&maxP=200&minP=75
+
