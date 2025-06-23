@@ -1,0 +1,7 @@
+#!/bin/bash
+# Czysta esencja polecenia SQL do wykonania
+mysql -u root -p"$MYSQL_ROOT_PASSWORD" <<-EOSQL
+    CREATE USER '$MYSQL_REPLICATION_USER'@'%' IDENTIFIED WITH mysql_native_password BY '$MYSQL_REPLICATION_PASSWORD';
+    GRANT REPLICATION SLAVE ON *.* TO '$MYSQL_REPLICATION_USER'@'%';
+    FLUSH PRIVILEGES;
+EOSQL

@@ -1,0 +1,8 @@
+Django
+djangorestframework
+mysqlclient
+django-cors-headers
+Faker
+djangorestframework-simplejwt
+mysql-connector-python
+gunicorn

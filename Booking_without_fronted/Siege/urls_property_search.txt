@@ -1,5 +1,0 @@
-http://127.0.0.1:8000/api/property/search/?city=Warszawa&rand=$(RANDOM)
-http://127.0.0.1:8000/api/property/search/?description=Azbest&rand=$(RANDOM)
-http://127.0.0.1:8000/api/property/search/?city=Mielno&rand=$(RANDOM)
-http://127.0.0.1:8000/api/property/search/?name=Bliźniak&rand=$(RANDOM)
-http://127.0.0.1:8000/api/property/search/?&rand=$(RANDOM)

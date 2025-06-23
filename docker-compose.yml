@@ -1,57 +1,86 @@
-# docker-compose.yml
 version: '3.8'
 
 services:
+  web:
+    build: .
+    command: gunicorn --workers 4 --bind 0.0.0.0:8000 Booking.wsgi:application
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    environment:
+      - DB_HOST_MASTER=db-master
+      - DB_NAME_MASTER=booking_db
+      - DB_USER_MASTER=user
+      - DB_PASSWORD_MASTER=password
+      - DB_HOST_SLAVE=db-slave
+      - DB_NAME_SLAVE=booking_db
+      - DB_USER_SLAVE=user
+      - DB_PASSWORD_SLAVE=password
+    depends_on:
+      db-master:
+        condition: service_healthy
+      db-slave:
+        condition: service_healthy
+
   db-master:
     image: mysql:8.0
-    container_name: mysql-master-db
-    command: --default-authentication-plugin=mysql_native_password
-    restart: always
-    environment:
-      MYSQL_DATABASE: 'db_booking'
-      MYSQL_USER: 'booking_user'         # Używamy dedykowanego użytkownika aplikacji
-      MYSQL_PASSWORD: 'password123'      # Hasło dla użytkownika aplikacji
-      MYSQL_ROOT_PASSWORD: 'rootpassword'  # Hasło dla roota
-    ports:
-      - "3306:3306" # Port Mastera
     deploy:
       resources:
         limits:
           cpus: '1.0'
           memory: 512M
+    command:
+      - --server-id=1
+      - --log-bin=mysql-bin
+      - --binlog-do-db=booking_db
     volumes:
-      - db_master_data:/var/lib/mysql
-      - ./config/master.cnf:/etc/mysql/conf.d/master.cnf
-    networks:
-      - booking_network
+      # Montujemy skrypt, który utworzy nam użytkownika replikacji
+      - ./init-master.sh:/docker-entrypoint-initdb.d/init-master.sh
+      - master_db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      # Te zmienne będą użyte przez nasz skrypt init-master.sh
+      MYSQL_REPLICATION_USER: replication_user
+      MYSQL_REPLICATION_PASSWORD: replication_password
+      MYSQL_DATABASE: booking_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3308:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
-  db-replica:
+  db-slave:
     image: mysql:8.0
-    container_name: mysql-replica-db
-    command: --default-authentication-plugin=mysql_native_password
-    restart: always
-    depends_on:
-      - db-master
-    environment:
-      # Replika nie potrzebuje tworzyć bazy ani usera, skopiuje je z mastera
-      MYSQL_ROOT_PASSWORD: 'rootpassword' # To samo hasło roota co u Mastera
-    ports:
-      - "3307:3306" # Mapujemy na INNY port (3307), by mieć dostęp z zewnątrz
     deploy:
       resources:
         limits:
           cpus: '1.0'
           memory: 512M
+    depends_on:
+      db-master:
+        condition: service_healthy
     volumes:
-      - db_replica_data:/var/lib/mysql
-      - ./config/replica.cnf:/etc/mysql/conf.d/replica.cnf
-    networks:
-      - booking_network
+      - ./init-slave.sh:/docker-entrypoint-initdb.d/init-slave.sh
+      - slave_db_data:/var/lib/mysql
+    command:
+      - --server-id=2
+      - --read-only=1
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: booking_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
-  db_master_data:
-  db_replica_data:
-
-networks:
-  booking_network:
-    driver: bridge
+  master_db_data:
+  slave_db_data:

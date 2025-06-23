@@ -1,4 +1,0 @@
-      Date & Time,  Trans,  Elap Time,  Data Trans,  Resp Time,  Trans Rate,  Throughput,  Concurrent,    OKAY,   Failed
-2025-06-07 18:20:46,   1198,      29.76,           0,       0.93,       40.26,        0.00,       37.62,    1198,    1024
-**** siege aborted due to excessive socket failure. ****
-2025-06-07 18:52:04,  19191,      29.97,           0,       0.27,      640.34,        0.00,      173.58,   19405,       0

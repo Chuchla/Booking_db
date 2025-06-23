@@ -1,4 +1,0 @@
-http://127.0.0.1:8000/api/property/search/?city=Warszawa&rand=$(RANDOM)
-http://127.0.0.1:8000/api/property/create/ POST @property_create.json header Content-Type:application/json header Authorization: Token 817df68dfba4f541d7ff119a812241c6da3cf673
-http://127.0.0.1:8000/api/property/search/?city=Mielno&rand=$(RANDOM)
-http://127.0.0.1:8000/api/review/create/ POST @review_create.json header Content-Type:application/json header Authorization: Token 817df68dfba4f541d7ff119a812241c6da3cf673

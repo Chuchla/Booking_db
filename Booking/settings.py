@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -80,25 +80,25 @@ WSGI_APPLICATION = 'Booking.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': { # To jest nasz MASTER
+    'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'db_booking',
-        'USER': 'booking_user',          # Użytkownik zdefiniowany w docker-compose
-        'PASSWORD': 'password123',      # Hasło zdefiniowane w docker-compose
-        'HOST': '127.0.0.1',
+        'NAME': os.environ.get('DB_NAME_MASTER', 'booking_db'),
+        'USER': os.environ.get('DB_USER_MASTER', 'user'),
+        'HOST': os.environ.get('DB_HOST_MASTER', 'db-master'),
+        'PASSWORD': os.environ.get('DB_PASSWORD_MASTER', 'password'),
         'PORT': '3306',
     },
-    'replica': { # To jest nasza REPLICA
+    'slave': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'db_booking',
-        'USER': 'booking_user',          # Ten sam użytkownik i hasło
-        'PASSWORD': 'password123',
-        'HOST': '127.0.0.1',
-        'PORT': '3307',                 # Łączymy się na zmapowany port repliki
+        'NAME': os.environ.get('DB_NAME_SLAVE', 'booking_db'),
+        'USER': os.environ.get('DB_USER_SLAVE', 'user'),
+        'HOST': os.environ.get('DB_HOST_SLAVE', 'db-slave'),
+        'PASSWORD': os.environ.get('DB_PASSWORD_SLAVE', 'password'),
+        'PORT': '3306',
     }
 }
 
-DATABASE_ROUTERS = ['Booking.routers.ReadReplicaRouter']
+DATABASE_ROUTERS = ['Booking.routers.DatabaseRouter']
 
 LOGGING = {
     'version': 1,
