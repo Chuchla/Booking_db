@@ -36,12 +36,10 @@ services:
       - --binlog-do-db=booking_db
       - --max_connections=4096
     volumes:
-      # Montujemy skrypt, który utworzy nam użytkownika replikacji
       - ./init-master.sh:/docker-entrypoint-initdb.d/init-master.sh
       - master_db_data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root_password
-      # Te zmienne będą użyte przez nasz skrypt init-master.sh
       MYSQL_REPLICATION_USER: replication_user
       MYSQL_REPLICATION_PASSWORD: replication_password
       MYSQL_DATABASE: booking_db

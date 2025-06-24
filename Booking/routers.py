@@ -3,17 +3,8 @@
 import random
 
 class DatabaseRouter:
-    """
-    Router bazy danych, który:
-    1. Kieruje operacje zapisu do bazy 'default' (master).
-    2. Równoważy (rozdziela) operacje odczytu pomiędzy bazę 'default' (master)
-       i bazę 'slave'.
-    """
 
     def db_for_read(self, model, **hints):
-        """
-        Losowo wybiera bazę danych ('default' lub 'slave') dla operacji odczytu.
-        """
         return random.choice(['default', 'slave'])
 
     def db_for_write(self, model, **hints):
