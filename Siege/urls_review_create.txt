@@ -1,1 +1,1 @@
-http://127.0.0.1:8000/api/review/create/ POST < review_create.json
+http://127.0.0.1:8000/api/review/create/ POST < /home/chuchla/PycharmProjects/Booking/Siege/review_create.json

@@ -5,7 +5,9 @@ Licensed to The Apache Software Foundation, http://www.apache.org/
 Benchmarking 127.0.0.1 (be patient)
 Completed 5000 requests
 Completed 10000 requests
-Finished 14723 requests
+Completed 15000 requests
+Completed 20000 requests
+Finished 24115 requests
 
 
 Server Software:        gunicorn
@@ -13,33 +15,33 @@ Server Hostname:        127.0.0.1
 Server Port:            8000
 
 Document Path:          /api/property/search/?city=Warszawa&region=Mazowieckie&maxP=330
-Document Length:        15905 bytes
+Document Length:        15853 bytes
 
 Concurrency Level:      4000
-Time taken for tests:   60.006 seconds
-Complete requests:      14723
+Time taken for tests:   60.002 seconds
+Complete requests:      24115
 Failed requests:        0
-Total transferred:      238939567 bytes
-HTML transferred:       234169315 bytes
-Requests per second:    245.36 [#/sec] (mean)
-Time per request:       16302.698 [ms] (mean)
-Time per request:       4.076 [ms] (mean, across all concurrent requests)
-Transfer rate:          3888.59 [Kbytes/sec] received
+Total transferred:      390108355 bytes
+HTML transferred:       382295095 bytes
+Requests per second:    401.90 [#/sec] (mean)
+Time per request:       9952.661 [ms] (mean)
+Time per request:       2.488 [ms] (mean, across all concurrent requests)
+Transfer rate:          6349.20 [Kbytes/sec] received
 
 Connection Times (ms)
               min  mean[+/-sd] median   max
-Connect:        0   32  79.1      0     283
-Processing:   136 7359 2299.8   7474   51421
-Waiting:      135 7359 2299.9   7473   51421
-Total:        419 7391 2250.5   7474   51603
+Connect:        0   27  87.5      0     383
+Processing:   250 4738 2173.3   3995   49961
+Waiting:      249 4737 2173.3   3994   49960
+Total:        633 4764 2208.3   3995   50179
 
 Percentage of the requests served within a certain time (ms)
-  50%   7474
-  66%   7563
-  75%   8137
-  80%   8593
-  90%   8881
-  95%   9196
-  98%   9693
-  99%   9863
- 100%  51603 (longest request)
+  50%   3995
+  66%   4043
+  75%   4061
+  80%   4074
+  90%   7380
+  95%  10842
+  98%  12667
+  99%  13139
+ 100%  50179 (longest request)

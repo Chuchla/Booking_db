@@ -87,6 +87,7 @@ DATABASES = {
         'HOST': os.environ.get('DB_HOST_MASTER', 'db-master'),
         'PASSWORD': os.environ.get('DB_PASSWORD_MASTER', 'password'),
         'PORT': '3306',
+        'CONN_MAX_AGE': 60
     },
     'slave': {
         'ENGINE': 'django.db.backends.mysql',

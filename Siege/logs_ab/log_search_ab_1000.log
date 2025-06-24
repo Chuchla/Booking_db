@@ -7,7 +7,8 @@ Completed 5000 requests
 Completed 10000 requests
 Completed 15000 requests
 Completed 20000 requests
-Finished 20749 requests
+Completed 25000 requests
+Finished 27320 requests
 
 
 Server Software:        gunicorn
@@ -15,33 +16,33 @@ Server Hostname:        127.0.0.1
 Server Port:            8000
 
 Document Path:          /api/property/search/?city=Warszawa&region=Mazowieckie&maxP=330
-Document Length:        15905 bytes
+Document Length:        15853 bytes
 
 Concurrency Level:      1000
-Time taken for tests:   60.012 seconds
-Complete requests:      20749
+Time taken for tests:   60.003 seconds
+Complete requests:      27320
 Failed requests:        0
-Total transferred:      336735521 bytes
-HTML transferred:       330012845 bytes
-Requests per second:    345.75 [#/sec] (mean)
-Time per request:       2892.288 [ms] (mean)
-Time per request:       2.892 [ms] (mean, across all concurrent requests)
-Transfer rate:          5479.62 [Kbytes/sec] received
+Total transferred:      441955640 bytes
+HTML transferred:       433103960 bytes
+Requests per second:    455.31 [#/sec] (mean)
+Time per request:       2196.317 [ms] (mean)
+Time per request:       2.196 [ms] (mean, across all concurrent requests)
+Transfer rate:          7192.88 [Kbytes/sec] received
 
 Connection Times (ms)
               min  mean[+/-sd] median   max
-Connect:        0    2   8.6      0      53
-Processing:    27 2818 367.6   2877    3084
-Waiting:        8 2818 367.6   2876    3083
-Total:         80 2820 359.5   2877    3084
+Connect:        0    1   5.7      0      38
+Processing:    19 2151 401.6   2074    3262
+Waiting:        6 2150 401.6   2073    3261
+Total:         57 2152 398.1   2074    3262
 
 Percentage of the requests served within a certain time (ms)
-  50%   2877
-  66%   2887
-  75%   2893
-  80%   2898
-  90%   2927
-  95%   3027
-  98%   3038
-  99%   3043
- 100%   3084 (longest request)
+  50%   2074
+  66%   2165
+  75%   2227
+  80%   2332
+  90%   2738
+  95%   2851
+  98%   3104
+  99%   3194
+ 100%   3262 (longest request)

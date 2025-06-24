@@ -1,0 +1,46 @@
+This is ApacheBench, Version 2.3 <$Revision: 1903618 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking 127.0.0.1 (be patient)
+Completed 5000 requests
+Completed 10000 requests
+Completed 15000 requests
+Finished 19330 requests
+
+
+Server Software:        gunicorn
+Server Hostname:        127.0.0.1
+Server Port:            8000
+
+Document Path:          /api/property/search/?city=Warszawa&region=Mazowieckie&maxP=330
+Document Length:        15859 bytes
+
+Concurrency Level:      1000
+Time taken for tests:   60.010 seconds
+Complete requests:      19330
+Failed requests:        0
+Total transferred:      312817390 bytes
+HTML transferred:       306554470 bytes
+Requests per second:    322.11 [#/sec] (mean)
+Time per request:       3104.491 [ms] (mean)
+Time per request:       3.104 [ms] (mean, across all concurrent requests)
+Transfer rate:          5090.60 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    2   9.1      0      54
+Processing:    26 3005 522.9   2896    3846
+Waiting:       10 3005 522.9   2896    3845
+Total:         80 3008 516.0   2897    3846
+
+Percentage of the requests served within a certain time (ms)
+  50%   2897
+  66%   2989
+  75%   3291
+  80%   3525
+  90%   3632
+  95%   3726
+  98%   3764
+  99%   3768
+ 100%   3846 (longest request)

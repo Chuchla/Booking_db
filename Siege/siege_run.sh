@@ -22,16 +22,15 @@ for n in $(seq $start $step $stop); do
 
     echo "=== TEST POST property/create przy -c $n ==="
     siege -f "$post_prop_file" -c"$n" -t60S \
-          -H "Authorization: Token b639e41441c31dd4c9dfb67995c0645cab18e3bd" \
-          -H "Content-Type: application/json" \
+          -H "Authorization: Token b22f55b87b6e66e98eb0be2a0d4500cee183e152" \
           --log="logs/log_property_create_${n}.log" \
           --benchmark
     sleep 5
 
     echo "=== TEST POST review/create przy -c $n ==="
     siege -f "$post_rev_file" -c"$n" -t60S \
-          -H "Authorization: Token b639e41441c31dd4c9dfb67995c0645cab18e3bd" \
-          -H "Content-Type: application/json" \
+          -H "Authorization: Token b22f55b87b6e66e98eb0be2a0d4500cee183e152" \
+
           --log="logs/log_review_create_${n}.log" \
           --benchmark
     sleep 5

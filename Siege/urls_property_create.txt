@@ -1,1 +1,1 @@
-http://127.0.0.1:8000/api/property/create/ POST < property_create.json
+http://127.0.0.1:8000/api/property/create/ POST < /home/chuchla/PycharmProjects/Booking/Siege/property_create.json
