@@ -7,7 +7,9 @@ Completed 5000 requests
 Completed 10000 requests
 Completed 15000 requests
 Completed 20000 requests
-Finished 20306 requests
+Completed 25000 requests
+Completed 30000 requests
+Finished 33729 requests
 
 
 Server Software:        gunicorn
@@ -15,33 +17,33 @@ Server Hostname:        127.0.0.1
 Server Port:            8000
 
 Document Path:          /api/property/search/?city=Warszawa&region=Mazowieckie&maxP=330
-Document Length:        15905 bytes
+Document Length:        15791 bytes
 
 Concurrency Level:      1200
-Time taken for tests:   60.009 seconds
-Complete requests:      20306
+Time taken for tests:   60.000 seconds
+Complete requests:      33729
 Failed requests:        0
-Total transferred:      329546074 bytes
-HTML transferred:       322966930 bytes
-Requests per second:    338.38 [#/sec] (mean)
-Time per request:       3546.305 [ms] (mean)
-Time per request:       2.955 [ms] (mean, across all concurrent requests)
-Transfer rate:          5362.87 [Kbytes/sec] received
+Total transferred:      543542835 bytes
+HTML transferred:       532614639 bytes
+Requests per second:    562.15 [#/sec] (mean)
+Time per request:       2134.663 [ms] (mean)
+Time per request:       1.779 [ms] (mean, across all concurrent requests)
+Transfer rate:          8846.72 [Kbytes/sec] received
 
 Connection Times (ms)
               min  mean[+/-sd] median   max
-Connect:        0    3  12.0      0      65
-Processing:    36 3439 539.4   3447    4377
-Waiting:        9 3439 539.5   3446    4376
-Total:        101 3442 529.0   3447    4377
+Connect:        0    1   7.2      0      54
+Processing:    24 2091 272.8   2078    2761
+Waiting:        6 2091 272.8   2078    2761
+Total:         78 2092 266.7   2078    2762
 
 Percentage of the requests served within a certain time (ms)
-  50%   3447
-  66%   3478
-  75%   3536
-  80%   3556
-  90%   3901
-  95%   4101
-  98%   4235
-  99%   4327
- 100%   4377 (longest request)
+  50%   2078
+  66%   2166
+  75%   2182
+  80%   2193
+  90%   2235
+  95%   2341
+  98%   2679
+  99%   2695
+ 100%   2762 (longest request)

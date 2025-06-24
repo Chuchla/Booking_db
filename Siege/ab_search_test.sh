@@ -8,9 +8,9 @@ TIME_LIMIT=60
 
 # Ustaw poziomy współbieżności (ilość jednoczesnych klientów)
 # Możesz ustawić nawet na 2000, aby zobaczyć, w którym momencie system przestaje być stabilny
-START_CONCURRENCY=2000
+START_CONCURRENCY=200
 STOP_CONCURRENCY=4000
-STEP=100
+STEP=200
 
 # Utwórz katalog na logi z testów AB
 mkdir -p logs_ab

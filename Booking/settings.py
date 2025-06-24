@@ -84,21 +84,14 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': os.environ.get('DB_NAME_MASTER', 'booking_db'),
         'USER': os.environ.get('DB_USER_MASTER', 'user'),
-        'HOST': os.environ.get('DB_HOST_MASTER', 'db-master'),
+        'HOST': os.environ.get('DB_HOST_MASTER', 'db'),
         'PASSWORD': os.environ.get('DB_PASSWORD_MASTER', 'password'),
         'PORT': '3306',
-    },
-    'slave': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get('DB_NAME_SLAVE', 'booking_db'),
-        'USER': os.environ.get('DB_USER_SLAVE', 'user'),
-        'HOST': os.environ.get('DB_HOST_SLAVE', 'db-slave'),
-        'PASSWORD': os.environ.get('DB_PASSWORD_SLAVE', 'password'),
-        'PORT': '3306',
+        'CONN_MAX_AGE': 60, # Utrzymuje połączenia otwarte, bardzo ważne dla wydajności
     }
 }
 
-DATABASE_ROUTERS = ['Booking.routers.DatabaseRouter']
+#DATABASE_ROUTERS = ['Booking.routers.DatabaseRouter']
 
 LOGGING = {
     'version': 1,
